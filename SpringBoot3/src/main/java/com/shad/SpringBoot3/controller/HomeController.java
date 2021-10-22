@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.shad.SpringBoot3.model.Customer;
@@ -26,13 +27,12 @@ public class HomeController {
 	private ProductService productService;
 
 	@GetMapping("/test")
-	public ModelAndView getHomePage() {
+	@ResponseBody
+	public List<Product> getHomePage() {
 
-		ModelAndView modelAndView = new ModelAndView("index");
+		List<Product> allProducts = productService.getAllProducts();
 
-		modelAndView.addObject("ABC", "BootCamp");
-
-		return modelAndView;
+		return allProducts;
 	}
 
 	@GetMapping("/dashboard")
@@ -104,7 +104,7 @@ public class HomeController {
 
 		ModelAndView modelAndView = new ModelAndView("editProduct");
 
-		 Optional<Product> productOp = productService.getProductById(id);
+		Optional<Product> productOp = productService.getProductById(id);
 
 		modelAndView.addObject("product", productOp.get());
 

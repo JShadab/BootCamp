@@ -15,18 +15,18 @@ public class ProductService {
 	@Autowired
 	private ProductRepository productRepository;
 
-	public void add(Product product) {
+	public Product add(Product product) {
 
-		productRepository.save(product);
+		return productRepository.save(product);
 	}
 
 	public List<Product> getAllProducts() {
 		return productRepository.findAll();
 	}
 
-	public void edit(Product product) {
+	public Product edit(Product product) {
 
-		productRepository.save(product);
+		return productRepository.save(product);
 
 	}
 

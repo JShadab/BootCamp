@@ -1,19 +1,29 @@
 package com.shad.SpringBoot3.model;
 
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "tbl_customer")
 public class Customer {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "cust_id")
 	private long id;
 	
+	
 	private String name;
+	
+	@Column(nullable = false )
 	private String email;
+	
+	
 	private String password;
 
 	public long getId() {
