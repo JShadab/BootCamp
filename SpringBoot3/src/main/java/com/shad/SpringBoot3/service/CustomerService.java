@@ -1,6 +1,7 @@
 package com.shad.SpringBoot3.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,8 +16,8 @@ public class CustomerService {
 	@Autowired
 	private CustomerRepository customerRepository;
 
-	public void add(Customer customer) {
-		customerRepository.save(customer);
+	public Customer add(Customer customer) {
+		return customerRepository.save(customer);
 	}
 
 	public List<Customer> getAllCustomers() {
@@ -31,6 +32,20 @@ public class CustomerService {
 		Customer customer = customerRepository.findByEmailAndPassword(email, password);
 
 		return customer != null;
+
+	}
+
+	public Optional<Customer> getCustomerById(long id) {
+		return customerRepository.findById(id);
+	}
+
+	public Customer edit(Customer customer) {
+
+		return customerRepository.save(customer);
+	}
+
+	public void deleteCustomerById(long id) {
+		customerRepository.deleteById(id);
 
 	}
 

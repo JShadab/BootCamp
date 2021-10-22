@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -28,7 +29,7 @@ public class ProductController {
 	}
 
 	@GetMapping("/product/{id}")
-	public Optional<Product> getProductById(long id) {
+	public Optional<Product> getProductById(@PathVariable long id) {
 
 		Optional<Product> productOptional = productService.getProductById(id);
 
@@ -36,7 +37,7 @@ public class ProductController {
 	}
 
 	@PostMapping("/product")
-	public Product saveProdcut(Product product) {
+	public Product saveProduct(Product product) {
 		return productService.add(product);
 	}
 
@@ -46,7 +47,7 @@ public class ProductController {
 	}
 
 	@DeleteMapping("/product/{id}")
-	public void deleteProductById(long id) {
+	public void deleteProductById(@PathVariable long id) {
 
 		productService.deleteProductById(id);
 
